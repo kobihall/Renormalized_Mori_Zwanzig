@@ -23,6 +23,10 @@ function [x,u_real] = make_real_space(u,N,L)
 %  u_real  =  length(x) x length(t_list) array of real space solution at
 %             every time step
 
+if isnan(L)
+    L = 2*pi;
+end
+
 %find how many time steps there are
 [M,num_times] = size(u);
 
