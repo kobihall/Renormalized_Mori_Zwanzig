@@ -1,4 +1,4 @@
-function energy = get_energy(u,N)
+function energy = get_energy(x,u,N)
 %
 %Calculates the energy in the first N modes at each time step for the 
 %solution matrix u
@@ -19,4 +19,4 @@ function energy = get_energy(u,N)
 %
 %  energy  =  the energy in modes 1:N at all times
 
-energy = sum((abs(u(1:2*N+1,:))).^2).';
+energy = trapz(x,(abs(u(1:2*N+1,:))).^2).';
