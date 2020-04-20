@@ -82,7 +82,8 @@ t_list = starttime:dt*howoften:endtime;
 nsteps = length(t)-1;
 
 %save the initial total energy
-total_energy = sum(2*abs(simulation_params.u).^2);
+k = [0:N,-N:-1].';
+total_energy = sum(1/2 * k.^2 .* (abs(simulation_params.u)).^2 + 1/2 * kappa * (abs(simulation_params.u)).^4).';
 
 %create u storage matrix
 u_list = zeros(2*N+1,length(t_list));
@@ -101,7 +102,7 @@ for i=1:nsteps
     simulation_params.u = RK4_stiff_nonstiff_step(simulation_params);
     
     %if total energy in increases above the initial amount, abort the evaluation
-    if ((sum(2*abs(simulation_params.u).^2)-total_energy)/total_energy>conservation_tolerance || isnan(sum(2*abs(simulation_params.u).^2)))
+    if ((sum(1/2 * k.^2 .* (abs(simulation_params.u)).^2 + 1/2 * kappa * (abs(simulation_params.u)).^4).'-total_energy)/total_energy>conservation_tolerance || isnan(sum(2*abs(simulation_params.u).^2)))
         
         if blowup
             u_list = u_list(:,1:current_index);
