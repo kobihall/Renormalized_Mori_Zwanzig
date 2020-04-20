@@ -51,6 +51,7 @@ function [t_list,u_list]=PDE_solve(simulation_params)
 %%%%%%%%%%%%%%%%
 
 %general simulation parameters
+kappa    = simulation_params.kappa;
 dt       = simulation_params.dt;
 endtime  = simulation_params.endtime;
 howoften = simulation_params.howoften;

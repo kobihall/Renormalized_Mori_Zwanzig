@@ -1,4 +1,4 @@
-function [x,u_real] = make_real_space(u,N)
+function [x,u_real] = make_real_space(u,N,L)
 %
 %Takes output from a simulation and creates an array of the real space
 %solution for plotting and error purposes.
@@ -39,4 +39,4 @@ for i = 1:num_times
 end
 
 %construct x-coordinate system
-x = linspace(0,2*pi*(2*M-1)/(2*M),M);
+x = linspace(0,L*(2*M-1)/(2*M),M);

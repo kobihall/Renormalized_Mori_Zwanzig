@@ -62,6 +62,12 @@ function simulation_params = complete_init_NLSE(simulation_params)
 %
 %       cutoff   =  cutoff for stiff portions of A
 
+%specify system length
+if ~isfield(simulation_params,'L')
+    simulation_params.L = 2*pi;
+end
+L = simulation_params.L;
+
 %create shorthand for ROM system size
 N = simulation_params.N;
 
@@ -71,7 +77,7 @@ dt = simulation_params.dt;
 
 
 %define the ordinates in real space
-x = linspace(0,2*pi*(2*N-1)/(2*N),2*N+1);
+x = linspace(0,L*(2*N-1)/(2*N),2*N+1);
 
 %define the initial condition
 u = fft_norm(simulation_params.initial_condition(x).');
@@ -128,7 +134,7 @@ if ~isfield(simulation_params,'coeffs')
         
     elseif simulation_params.order == 2
         simulation_params.coeffs = zeros(2,1);
-        simulation_params.coeffs(2) = -1/2;%-0.792320392542639*kappa^-3.783222616952010*N^-5.825426679579797;
+        simulation_params.coeffs(2) = 1/2;%-0.792320392542639*kappa^-3.783222616952010*N^-5.825426679579797;
         simulation_params.coeffs(1) = 1;
         
     elseif simulation_params.order == 1
