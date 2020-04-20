@@ -27,3 +27,5 @@ E = get_energy(u_list,simulation_params.N);
 save x x
 save u_real u_real
 save u_energy E
+csvwrite('x.csv',x)
+csvwrite('u_real.csv',u_real)

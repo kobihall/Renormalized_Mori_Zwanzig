@@ -128,12 +128,16 @@ if ~isfield(simulation_params,'coeffs')
         
     elseif simulation_params.order == 2
         simulation_params.coeffs = zeros(2,1);
-        simulation_params.coeffs(2) = -0.792320392542639*kappa^-3.783222616952010*N^-5.825426679579797;
+        simulation_params.coeffs(2) = -1/2;%-0.792320392542639*kappa^-3.783222616952010*N^-5.825426679579797;
         simulation_params.coeffs(1) = 1;
         
     elseif simulation_params.order == 1
         simulation_params.coeffs = zeros(1,1);
         simulation_params.coeffs(1) = 1;
+        
+    elseif simulation_params.order == 0
+        simulation_params.coeffs = zeros(1,1);
+        simulation_params.coeffs(1) = 0;
     end
     
 end
@@ -146,6 +150,8 @@ if simulation_params.order == 4
 elseif simulation_params.order == 2
     simulation_params.B = @(x,t) renormalized_complete_2nd_order_NLSE(x,t,simulation_params);
 elseif simulation_params.order == 1
+    simulation_params.B = @(x,t) renormalized_complete_1st_order_NLSE(x,t,simulation_params);
+elseif simulation_params.order == 0
     simulation_params.B = @(x,t) renormalized_complete_1st_order_NLSE(x,t,simulation_params);
 end
 

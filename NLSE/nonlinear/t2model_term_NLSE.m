@@ -53,4 +53,4 @@ DC = convolution_sum_NLSE(u_full,-1i*k.^2.*u_full - uuu + uuu_tilde,u_full,kappa
 DC(F_modes) = 0;
 D = convolution_sum_NLSE(u_full, CA+DB+DC+CD ,u_full,kappa);
 
-nonlin2 = A + B + C +D;
+nonlin2 = A + B + C + D;
