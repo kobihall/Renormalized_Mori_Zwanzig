@@ -19,4 +19,4 @@ function energy = get_energy(u,N)
 %
 %  energy  =  the energy in modes 1:N at all times
 
-energy = sum(2*(abs(u(1:2*N+1,:))).^2).';
+energy = sum((abs(u(1:2*N+1,:))).^2).';
