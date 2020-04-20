@@ -103,7 +103,7 @@ for i=1:nsteps
     simulation_params.u = RK4_stiff_nonstiff_step(simulation_params);
     
     %if total energy in increases above the initial amount, abort the evaluation
-    if ((sum(1/2 * k.^2 .* (abs(simulation_params.u)).^2 + 1/2 * kappa * (abs(simulation_params.u)).^4).'-total_energy)/total_energy>conservation_tolerance || isnan(sum(2*abs(simulation_params.u).^2)))
+    if ((sum(1/2 * k.^2 .* (abs(simulation_params.u)).^2 + 1/2 * kappa * (abs(simulation_params.u)).^4).'-total_energy)/total_energy>conservation_tolerance || isnan(sum(1/2 * k.^2 .* (abs(simulation_params.u)).^2 + 1/2 * kappa * (abs(simulation_params.u)).^4)))
         
         if blowup
             u_list = u_list(:,1:current_index);
